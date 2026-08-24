@@ -7,7 +7,7 @@ Focus and productivity tool.
 ## Running
 
 ### Windows Intel/AMD 64-bit
-Visit releases page or [click here](https://github.com/abhinavgunwant/fokus/releases/download/v0.1.0/fokus-windows-x64.exe) to download the executable.
+Visit releases page or [click here](https://github.com/abhinavgunwant/fokus/releases/download/v0.1.1/fokus-windows-x64.exe) to download the executable.
 
 Just double click the executable to run.
 
@@ -56,5 +56,5 @@ You can set the timer duration using command line arguments.
     ```
 - Any other type of argument input is invalid except:
   - `-h`, `--help`: shows the help menu.
-  - '-v', `--version`: shows the app version.
+  - `-v`, `--version`: shows the app version.
 
