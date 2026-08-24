@@ -18,8 +18,11 @@ init :: proc () {
     init_fonts()
     init_icons()
     init_buffers()
+    clear_colour()
+}
 
-    when ODIN_OS_STRING == "windows" {
+clear_colour :: proc () {
+    when ODIN_OS == .Windows {
         gl.ClearColor(0.11, 0.11, 0.11, 1.0);
     } else {
         gl.ClearColor(0, 0, 0, 1.0);

@@ -9,14 +9,13 @@ import gl "vendor:OpenGL"
 
 import "globals"
 import "ui"
+import "render"
 
 show_window :: proc () -> glfw.WindowHandle {
     glfw.Init()
     glfw.WindowHint(glfw.CONTEXT_VERSION_MAJOR, globals.OPENGL_VERSION_MAJOR)
     glfw.WindowHint(glfw.CONTEXT_VERSION_MINOR, globals.OPENGL_VERSION_MINOR)
     glfw.WindowHint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
-
-    glfw.WindowHint(glfw.TRANSPARENT_FRAMEBUFFER, glfw.TRUE)
 
     window: glfw.WindowHandle = glfw.CreateWindow(
         globals.width,
@@ -32,7 +31,10 @@ show_window :: proc () -> glfw.WindowHandle {
     glfw.SetWindowIconifyCallback(window, iconify_callback)
     glfw.SetWindowFocusCallback(window, focus_callback)
 
-    glfw.SetWindowOpacity(window, 1.0)
+    if globals.ENABLE_TRANSPARENCY {
+        glfw.WindowHint(glfw.TRANSPARENT_FRAMEBUFFER, glfw.TRUE)
+        glfw.SetWindowOpacity(window, 1.0)
+    }
 
     gl.load_up_to(
         globals.OPENGL_VERSION_MAJOR,
@@ -80,7 +82,19 @@ key_callback :: proc "c" (
 }
 
 resize_callback :: proc "c" (window: glfw.WindowHandle, width, height: i32) {
+    context = runtime.default_context()
+
+    render.clear_colour()
+
     gl.Viewport(0, 0, width, height)
+
+    globals.width = width
+    globals.height = height
+
+    ui.update()
+    render.render()
+
+    glfw.SwapBuffers(window)
 }
 
 iconify_callback :: proc "c" (window: glfw.WindowHandle, iconified: i32) {
