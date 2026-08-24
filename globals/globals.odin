@@ -10,9 +10,10 @@ height : i32 = 480
 
 APP_VERSION_MAJOR :: 0
 APP_VERSION_MINOR :: 1
-APP_VERSION_PATCH :: 0
+APP_VERSION_PATCH :: 1
 
 DEFAULT_TIMER :: 30 * time.Minute
+initial_timer := DEFAULT_TIMER
 
 APP_NAME :: "Fokus"
 

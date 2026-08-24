@@ -30,3 +30,31 @@ Alternatively you can build and execute with this single command:
 odin run .
 ```
 
+## Command-line arguments
+
+You can set the timer duration using command line arguments.
+
+- Passing a single number sets minutes:
+    ```powershell
+    .\fokus.exe 25
+    ```
+- You can set hour and minute as:
+    ```powershell
+    .\focus.exe 1:15
+    ```
+- Passing argument in `##:##:##` format also sets seconds:
+    ```powershell
+    .\focus.exe 00:29:30
+    ```
+    Or:
+    ```powershell
+    .\focus.exe 01:05:45
+    ```
+    Or:
+    ```powershell
+    .\focus.exe 00:00:55
+    ```
+- Any other type of argument input is invalid except:
+  - `-h`, `--help`: shows the help menu.
+  - '-v', `--version`: shows the app version.
+

@@ -64,7 +64,7 @@ key_callback :: proc "c" (
                 } else {
                     ui.state.timer.initial_time = now
                     ui.state.timer.last_updated = now
-                    ui.state.timer.configured_duration = time.tick_add(now, globals.DEFAULT_TIMER)
+                    ui.state.timer.configured_duration = time.tick_add(now, globals.initial_timer)
                     ui.state.timer.remaining_duration = time.tick_diff(now, ui.state.timer.configured_duration)
 
                     ui.state.started = true
