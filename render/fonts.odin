@@ -122,7 +122,8 @@ create_font_texture :: proc (font_atlas: ^[]u8) {
     gl.BindTexture(gl.TEXTURE_2D, font_texture);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT);
-    gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    // gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.PixelStorei(gl.UNPACK_ALIGNMENT, 1);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_BASE_LEVEL, 0);
@@ -169,7 +170,6 @@ get_text_dimensions :: proc (size: f32, text: string) -> (f32, f32) {
 }
 
 append_text_buffer :: proc (x, y, size: f32, text: string) {
-    fmt.println("appending buffer", len(text_buffer))
     xpos := x
     resize := size / DEFAULT_FONT_SIZE
 

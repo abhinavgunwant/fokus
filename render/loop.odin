@@ -10,11 +10,11 @@ loop :: proc (window: glfw.WindowHandle) {
         gl.Clear(gl.COLOR_BUFFER_BIT)
 
         if globals.minimized {
-            glfw.WaitEventsTimeout(4000)
+            glfw.WaitEventsTimeout(4)
         }
 
         if !globals.focused {
-            glfw.WaitEventsTimeout(50)
+            glfw.WaitEventsTimeout(0.1)
         }
 
         render()

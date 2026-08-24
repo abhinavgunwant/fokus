@@ -1,8 +1,8 @@
 package main
 
-import "core:os"
-import "core:fmt"
 import "base:runtime"
+import "core:os"
+import "core:time"
 
 import "vendor:glfw"
 import gl "vendor:OpenGL"
@@ -51,18 +51,27 @@ key_callback :: proc "c" (
             case glfw.KEY_ESCAPE:
                 os.exit(0)
             case glfw.KEY_SPACE:
-                if ui.state.screen == ui.Screen.Settings {
-                    ui.state.screen = ui.Screen.Start
+                if ui.state.message == ui.TimerMessage.Run {
+                    ui.state.message = ui.TimerMessage.Stop
                 } else {
-                    ui.state.screen = ui.Screen.Settings
+                    ui.state.message = ui.TimerMessage.Run
+                }
+
+                now := time.tick_now()
+
+                if ui.state.started {
+                    ui.state.timer.last_updated = now
+                } else {
+                    ui.state.timer.initial_time = now
+                    ui.state.timer.last_updated = now
+                    ui.state.timer.configured_duration = time.tick_add(now, globals.DEFAULT_TIMER)
+                    ui.state.timer.remaining_duration = time.tick_diff(now, ui.state.timer.configured_duration)
+
+                    ui.state.started = true
                 }
 
                 ui.update()
-
-                // Implement other keys here...
         }
-    } else {
-        // Implement what happens when key is released here...
     }
 }
 
