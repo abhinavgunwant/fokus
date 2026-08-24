@@ -46,13 +46,10 @@ init_icons :: proc () {
         0.78125,
     }
 
-    fmt.println(icons)
-
     atlas_len : u32
 
     icon_atlas := make([]u8, atlas_len)
     icon_atlas = init_icon_atlas(&atlas_len)
-    fmt.println("atlas_len:", atlas_len)
 
     create_icon_texture(&icon_atlas)
 }
@@ -72,7 +69,6 @@ create_icon_texture :: proc (icon_atlas: ^[]u8) {
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.MIRRORED_REPEAT);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
-    // gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.PixelStorei(gl.UNPACK_ALIGNMENT, 1);
     gl.TexParameteri(gl.TEXTURE_2D, gl.TEXTURE_BASE_LEVEL, 0);

@@ -4,8 +4,6 @@ import "core:fmt"
 import "core:os"
 import "core:mem"
 import "core:slice"
-import "core:compress/zlib"
-import mv "core:mem/virtual"
 
 import gl "vendor:OpenGL"
 import tt "vendor:stb/truetype"
@@ -16,7 +14,7 @@ import "../globals"
 
 ATLAS_WIDTH :: 1600
 ATLAS_HEIGHT :: 1600
-DEFAULT_FONT_SIZE :: 256 
+DEFAULT_FONT_SIZE :: 256
 
 TEXT_BUFFER_INITIAL_SIZE :: 2048
 

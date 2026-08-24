@@ -50,38 +50,11 @@ render :: proc () {
             gl.DrawArrays(gl.TRIANGLES, 0, 3)
     }
 
-    tick()
-}
-
-tick :: proc () {
-    now := time.tick_now()
-
-    if ui.state.message == ui.TimerMessage.Run {
-        ui.state.timer.remaining_duration -= time.tick_diff(ui.state.timer.last_updated, now)
-        ui.state.timer.last_updated = now
-
-        if ui.state.timer.remaining_duration < 0 {
-            ui.state.message = ui.TimerMessage.Finished
-            ui.state.timer.remaining_duration = 0
-            ui.state.started = false
-        }
-    }
-}
-
-get_time_string :: proc () -> string {
-    buf : [20] u8
-
-    h, m, s, n := time.precise_clock_from_duration(ui.state.timer.remaining_duration)
-
-    if h > 0 {
-        return fmt.tprintf("%2v:%2v:%2v", h, m, s)
-    }
-
-    return fmt.tprintf("%2v:%2v", m, s)
+    ui.tick()
 }
 
 update_time :: proc () {
-    time_string : string = get_time_string()
+    time_string : string = ui.get_time_string()
     helper_string : string = "Press space"
 
     time_str_w, time_str_h := get_text_dimensions(128, time_string)
