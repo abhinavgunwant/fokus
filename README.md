@@ -16,7 +16,7 @@ Just double click the executable to run.
 If your OS is not supported or you want to play with this code, you can easily
 build this app.
 
-Make sure you have odin installed.
+Make sure you have [odin](https://odin-lang.org/docs/install/) installed.
 
 Execute the following commands:
 ```bash
