@@ -12,6 +12,9 @@ APP_VERSION_MAJOR :: 0
 APP_VERSION_MINOR :: 1
 APP_VERSION_PATCH :: 1
 
+// Set this to true for window transparency
+ENABLE_TRANSPARENCY :: false
+
 DEFAULT_TIMER :: 30 * time.Minute
 initial_timer := DEFAULT_TIMER
 

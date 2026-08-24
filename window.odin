@@ -16,6 +16,8 @@ show_window :: proc () -> glfw.WindowHandle {
     glfw.WindowHint(glfw.CONTEXT_VERSION_MINOR, globals.OPENGL_VERSION_MINOR)
     glfw.WindowHint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
 
+    glfw.WindowHint(glfw.TRANSPARENT_FRAMEBUFFER, glfw.TRUE)
+
     window: glfw.WindowHandle = glfw.CreateWindow(
         globals.width,
         globals.height,
@@ -29,6 +31,8 @@ show_window :: proc () -> glfw.WindowHandle {
     glfw.SetWindowSizeCallback(window, resize_callback)
     glfw.SetWindowIconifyCallback(window, iconify_callback)
     glfw.SetWindowFocusCallback(window, focus_callback)
+
+    glfw.SetWindowOpacity(window, 1.0)
 
     gl.load_up_to(
         globals.OPENGL_VERSION_MAJOR,
@@ -85,5 +89,13 @@ iconify_callback :: proc "c" (window: glfw.WindowHandle, iconified: i32) {
 
 focus_callback :: proc "c" (window: glfw.WindowHandle, focused: i32) {
     globals.focused = focused > 0
+
+    if globals.ENABLE_TRANSPARENCY {
+        if globals.focused {
+            glfw.SetWindowOpacity(window, 1.0)
+        } else {
+            glfw.SetWindowOpacity(window, 0.75)
+        }
+    }
 }
 

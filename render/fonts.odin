@@ -206,6 +206,7 @@ append_text_buffer :: proc (x, y, size: f32, text: string) {
 render_text :: proc () {
     gl.ActiveTexture(gl.TEXTURE0);
     gl.BindVertexArray(text_vao)
+    gl.BindTexture(gl.TEXTURE_2D, font_texture);
     gl.UseProgram(shaders.text)
     gl.Uniform2f(i32(shaders.u_text_resolution), f32(globals.width), f32(globals.height))
     gl.Uniform4f(i32(shaders.u_text_color), 1, 1, 1, 1)
