@@ -132,21 +132,49 @@ print_help :: proc () {
     fmt.println("\nDESCRIPTION")
     fmt.println("  Minimal focus and productivity tool.")
     fmt.println("\nUSAGE")
-    fmt.println("  .\\fokus.exe")
+    when ODIN_OS == .Windows {
+        fmt.println("  .\\fokus.exe")
+    } else {
+        fmt.println("  fokus")
+    }
     fmt.println("                     Starts with default time (30 minutes).")
-    fmt.println("  .\\fokus.exe TIME")
+    when ODIN_OS == .Windows {
+        fmt.println("  .\\fokus.exe TIME")
+    } else {
+        fmt.println("  fokus TIME")
+    }
     fmt.println("                     Starts with TIME.")
     fmt.println("\nTIME")
     fmt.println("  Passing a single number sets minutes:")
-    fmt.println("    .\\fokus.exe 25")
+    when ODIN_OS == .Windows {
+        fmt.println("    .\\fokus.exe 25")
+    } else {
+        fmt.println("    fokus 25")
+    }
     fmt.println("  You can set hour and minute as:")
-    fmt.println("    .\\focus.exe 1:15")
+    when ODIN_OS == .Windows {
+        fmt.println("    .\\focus.exe 1:15")
+    } else {
+        fmt.println("    focus 1:15")
+    }
     fmt.println("  Passing argument as `##:##:##` also sets seconds:")
-    fmt.println("    .\\focus.exe 00:29:30")
+    when ODIN_OS == .Windows {
+        fmt.println("    .\\focus.exe 00:29:30")
+    } else {
+        fmt.println("    focus 00:29:30")
+    }
     fmt.println("  Or:")
-    fmt.println("    .\\focus.exe 01:05:45")
+    when ODIN_OS == .Windows {
+        fmt.println("    .\\focus.exe 01:05:45")
+    } else {
+        fmt.println("    focus 01:05:45")
+    }
     fmt.println("  Or:")
-    fmt.println("    .\\focus.exe 00:00:55")
+    when ODIN_OS == .Windows {
+        fmt.println("    .\\focus.exe 00:00:55")
+    } else {
+        fmt.println("    focus 00:00:55")
+    }
     fmt.println("\nFLAGS")
     fmt.println("  -h, --help     Shows this help menu.")
     fmt.println("  -v, --version  Shows the app version.")
